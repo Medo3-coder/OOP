@@ -1,0 +1,58 @@
+
+// private   :-  // can access from the same class 
+// protected :-  // can access from a drived class and at the same class
+// public    :-  // can access from any where 
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class A{
+  
+       int i; 
+       
+     protected :
+         int j ;
+     
+    public :
+      int k ;
+};
+
+class B : public A { // inherited a public member 
+ 
+ int x ;
+ 
+ public :
+   int y ; 
+   int get_i()
+   {
+       return i ; 
+       // cannot access a private member declared in class" A"
+   }
+   
+   int get_j()
+   {
+       return j ; 
+       // can access to j cause  protected member in class A
+   }
+ 
+ 
+};
+
+
+int main()
+{
+   
+   B op;
+   op.i = 5; // cannot access a private member declared in class" A"
+   
+    op.j = 6;   // cannot access a protected member declared in class" A" & J is non member in  class" B"
+   
+     op.k = 7;
+      op.x = 8;   // cannot access a private member declared in class" B"
+       op.y = 9;
+
+  
+    return 0;
+}
