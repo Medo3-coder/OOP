@@ -1,1 +1,4 @@
-# OOP
+# Inheritance 
+# Polymorphism 
+# Pncapsulation 
+# Abstrction
