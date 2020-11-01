@@ -1,0 +1,103 @@
+/*
+
+
+The word polymorphism    :- means having many forms. In simple words, 
+we can define polymorphism as the ability of a message to be displayed in more than one form.
+A real-life example of polymorphism, 
+a person at the same time can have different characteristics.
+Like a man at the same time is a father, a husband, an employee. 
+So the same person posses different behavior in different situations.
+This is called polymorphism.
+
+
+*/
+
+
+
+/*
+A virtual function :-     is a member function which is declared within a base class 
+and is re-defined(Overriden) by a derived class. When you refer to a derived class object using 
+a pointer or a reference to the base class, you can call a virtual function for that object and
+execute the derived class’s version of the function
+*/
+
+
+//polymorphism 
+
+//بونتر الاب بيأشر علي الابن لكن العكس لا 
+//pointer to the base class 
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+class CPolygon {
+    
+    protected :   
+    
+         int width , height ; 
+    
+    public : 
+             void set_values (int a , int b)
+             {
+                 width  = a ;
+                 height = b ;
+             }
+             //انا بقول للكمبيلر انا عندي نسخة من الفنكشن المساحة داخل كلاسات الابناء خليني عن طريق البوينتر من كلاس الاب اعرف استدعيها 
+             int virtual area ()     
+             {
+                 return 0 ;
+             }
+    
+};
+
+ 
+
+class CRectangle : public CPolygon { // this is inheritance 
+
+ public : 
+ 
+     int  area()
+        {
+            return (width * height);  // accessed to protected values  in drived class
+        }
+        
+};
+
+
+class CTrinagle : public CPolygon {  // this is inheritance 
+
+  public :
+    int area()
+      {
+          return (width * height / 2);
+      }
+    
+};
+
+
+
+int main()
+{
+   
+   
+    CRectangle rect ;   // width height && set_values && area
+    CTrinagle  trgl ;   // width height && set_values && area
+    CPolygon   poly :  
+    
+    CPolygon *p1 , *p2 , *p3 ;  // here is the polymorphism
+    
+    p1 = &rect ;
+    p2 = &trgl ;
+    p3 = &poly ;
+    
+    p1->set_values (4 , 5); 
+    p2->set_values (4 , 5);  
+    p3->set_values (4 , 5);  
+    
+    cout << p1->area() <<endl;
+    cout << p2->area() <<endl;
+    cout << p3->area() <<endl;
+    return 0;
+}
