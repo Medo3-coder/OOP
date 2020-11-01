@@ -1,0 +1,86 @@
+/*
+
+abestract class CPolygon class
+i cannot declear obj form it i can declear only pointers 
+
+*/
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+class Polygon {
+    
+    protected :   
+    
+         int width , height ; 
+    
+    public : 
+             void set_values (int a , int b)
+             {
+                 width  = a ;
+                 height = b ;
+             }
+      
+             int virtual area (void)   = 0 ;    // pure virtual function
+             
+             void printarea(void) // polymorphism 
+             {
+                 cout << this->area() <<endl ;
+             }
+            
+};
+
+ 
+
+class Rectangle : public Polygon { // this is inheritance 
+
+ public : 
+ 
+     int  area()
+        {
+            return (width * height);  // accessed to protected values  in drived class
+        }
+        
+};
+
+
+class Trinagle : public Polygon {  // this is inheritance 
+
+  public :
+    int area()
+      {
+          return (width * height / 2);
+      }
+    
+};
+
+
+
+int main()
+{
+   
+   
+    Rectangle rect ; 
+    Trinagle  trgl ;   
+    
+    
+    Polygon *p1 = &rect ;
+    Polygon *p2 = &trgl ;
+     
+   
+    p1->set_values (4 , 5); 
+    p2->set_values (4 , 5); 
+    p1->printarea(); //20
+    p2->printarea(); //10
+
+    
+  Polygon *p[] ={&rect , &trgl} ;
+  for (int i = 0 ; i < 2 ; i++)
+  {
+      p[i]->area(); // p[0]->area
+      p[i]->printarea(); 
+  }
+    return 0;
+}
